@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-//import our service
 import JeopardyService from "../../jeopardyService";
+import JeopardyDisplay from '../jeopardy_display/JeopardyDisplay';
 
 class Jeopardy extends Component {
-    //set our initial state and set up our service as this.client on this component
     constructor(props) {
         super(props);
         this.client = new JeopardyService();
         this.state = {
-            data: {},
+            data: {
+                category:{
+                    title:'',
+                },
+            },
             score: 0,
             submitted: false,
             formData: {
-                answer: '',
-            }
+                answer: ''
+            },
         }
     }
-    //get a new random question from the API and add it to the data object in state
     getNewQuestion() {
         return this.client.getQuestion().then(result => {
             this.setState({
@@ -24,11 +26,12 @@ class Jeopardy extends Component {
             })
         })
     }
-    //when the component mounts, get a the first question
     componentDidMount() {
         this.getNewQuestion();
+       
     }
-    //display the results on the screen
+
+    
 
 
     handleChange = (event) => {
@@ -80,63 +83,75 @@ class Jeopardy extends Component {
 
     render() {
 
-        let category = "loading..."
-        if (this.state.data.category) {
-            category = this.state.data.category.title
-        }
+        // let category = "loading..."
+        // if (this.state.data.category) {
+        //     category = this.state.data.category.title
+        // }
     
-        if(this.state.submitted && this.state.formData.answer === this.state.data.answer){
-            return (
-                <div>
-                <div><h4>You answered correct! Answer is: {this.state.data.answer}</h4><br /></div>
-                <div> <strong>User Score: </strong> {this.state.score} < br />
-                </div>
-                <div className="resetForm">
-                    <button onClick={this.resetForm}>Next Question</button>
-                </div>
-                </div>
-            )
-        }
+        // if(this.state.submitted && this.state.formData.answer === this.state.data.answer){
+        //     return (
+        //         <div>
+        //         <div><h4>You answered correct! Answer is: {this.state.data.answer}</h4><br /></div>
+        //         <div> <strong>User Score: </strong> {this.state.score} < br />
+        //         </div>
+        //         <div className="resetForm">
+        //             <button onClick={this.resetForm}>Next Question</button>
+        //         </div>
+        //         </div>
+        //     )
+        // }
 
-        if(this.state.submitted && this.state.formData.answer !== this.state.data.answer){
-            return (
-                <div>
-                <div><h4>You answered Incorrect! Answer is: {this.state.data.answer}</h4><br /></div>
-                <div> <strong>User Score: </strong> {this.state.score} < br />
-                </div>
-                <div className="resetForm">
-                    <button onClick={this.resetForm}>Next Question</button>
-                </div>
-                </div>
-            )
-        }
+        // if(this.state.submitted && this.state.formData.answer !== this.state.data.answer){
+        //     return (
+        //         <div>
+        //         <div><h4>You answered Incorrect! Answer is: {this.state.data.answer}</h4><br /></div>
+        //         <div> <strong>User Score: </strong> {this.state.score} < br />
+        //         </div>
+        //         <div className="resetForm">
+        //             <button onClick={this.resetForm}>Next Question</button>
+        //         </div>
+        //         </div>
+        //     )
+        // }
 
         return (
-            <div>
-                <div> <strong>User Score: </strong> {this.state.score} < br />
-                    <strong>Category: </strong> {category}<br />
-                    <strong>Question: </strong> {this.state.data.question} < br />
-                    <strong>Value: </strong> {this.state.data.value}< br />
-                </div>
+            // <div>
+            //     <div> <strong>User Score: </strong> {this.state.score} < br />
+            //         <strong>Category: </strong> {category}<br />
+            //         <strong>Question: </strong> {this.state.data.question} < br />
+            //         <strong>Value: </strong> {this.state.data.value}< br />
+            //     </div>
 
-                <div className="jeopardyAnswer">
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="answer">Your Answer: </label>
-                            <input
-                                type="text"
-                                name="jeopardyAnswer"
-                                value={this.state.formData.answer}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <button>Submit Answer</button>
-                    </form>
-                    <div>
-                        {this.state.formData.answer}
-                    </div>
-                </div>
-            </div>
+            //     <div className="jeopardyAnswer">
+            //         <form onSubmit={this.handleSubmit}>
+            //             <div>
+            //                 <label htmlFor="answer">Your Answer: </label>
+            //                 <input
+            //                     type="text"
+            //                     name="jeopardyAnswer"
+            //                     value={this.state.formData.answer}
+            //                     onChange={this.handleChange}
+            //                 />
+            //             </div>
+            //             <button>Submit Answer</button>
+            //         </form>
+            //         <div>
+            //             {this.state.formData.answer}
+            //         </div>
+            //     </div>
+            // </div>
+            < JeopardyDisplay 
+            category={this.state.data.category.title} 
+            score= {this.state.score} 
+            question={this.state.data.question} 
+            value={this.state.data.value}
+            submitted={this.state.submitted}
+            submittedAnswer={this.state.formData.answer}
+            answer={this.state.data.answer}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            resetForm={this.resetForm}
+            />
         );
     }
 }
