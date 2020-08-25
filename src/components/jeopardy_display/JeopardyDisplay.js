@@ -58,4 +58,4 @@ function JeopardyDisplay(props) {
 )
 }
 
-export default JeopardyDisplay
+export default JeopardyDisplay;
