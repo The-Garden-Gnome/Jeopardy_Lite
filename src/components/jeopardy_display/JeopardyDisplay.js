@@ -1,8 +1,26 @@
 import React from 'react'
-import Jeopardy from '../jeopardy/Jeopardy'
 
 function JeopardyDisplay(props) {
+
+    // let category = "loading..."
+    // if (props.categorySelectedCategory) {
+    //     category = props.categorySelectedCategory.title
+    // }
     
+    if (props.categorySelected === false){
+        return(
+            <div>
+            <div><h2>Choose a Category:</h2></div>
+        <div> 
+            <button name='0' onClick={props.handleCategorySelection}><strong>1:</strong> {props.category0}</button> 
+            <button name='1' onClick={props.handleCategorySelection}><strong>2:</strong> {props.category1}</button> 
+            <button name='2' onClick={props.handleCategorySelection}><strong>3:</strong> {props.category2}</button>
+            </div>< br/>
+        
+        </div>
+        )
+    }
+
         if(props.submitted && props.submittedAnswer === props.answer){
             return (
                 <div>
@@ -32,7 +50,7 @@ function JeopardyDisplay(props) {
     return (
         <div>
         <div> <strong>User Score: </strong> {props.score} < br />
-            <strong>Category: </strong> {props.category}<br />
+            <strong>Category: </strong> {props.categorySelectedCategory}<br />
             <strong>Question: </strong> {props.question} < br />
             <strong>Value: </strong> {props.value}< br />
         </div>
