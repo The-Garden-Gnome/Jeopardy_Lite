@@ -52,7 +52,7 @@ render(){
     return (
         <div className="Contact">
             <form onSubmit={this.handleSubmit}>
-                <div>
+                <div><h2>Let Me know You Visited! </h2>
                     <label htmlFor="firstName">First Name</label>
                     <input 
                     type="text" 

@@ -1,11 +1,6 @@
 import React from 'react'
 
 function JeopardyDisplay(props) {
-
-    // let category = "loading..."
-    // if (props.categorySelectedCategory) {
-    //     category = props.categorySelectedCategory.title
-    // }
     
     if (props.categorySelected === false){
         return(

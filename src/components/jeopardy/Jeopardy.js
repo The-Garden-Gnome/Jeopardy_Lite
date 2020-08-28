@@ -65,7 +65,6 @@ class Jeopardy extends Component {
 
     handleCategorySelection = (event) => {
         const selectedCategoryData = event.target.name
-        // selectedCategoryData[event.target.name] = event.target.name;
 
         if (selectedCategoryData === '0') {
             this.setState({
@@ -150,58 +149,9 @@ class Jeopardy extends Component {
             category = this.state.selectedCategory.category.title
         }
 
-        // if(this.state.submitted && this.state.formData.answer === this.state.data.answer){
-        //     return (
-        //         <div>
-        //         <div><h4>You answered correct! Answer is: {this.state.data.answer}</h4><br /></div>
-        //         <div> <strong>User Score: </strong> {this.state.score} < br />
-        //         </div>
-        //         <div className="resetForm">
-        //             <button onClick={this.resetForm}>Next Question</button>
-        //         </div>
-        //         </div>
-        //     )
-        // }
-
-        // if(this.state.submitted && this.state.formData.answer !== this.state.data.answer){
-        //     return (
-        //         <div>
-        //         <div><h4>You answered Incorrect! Answer is: {this.state.data.answer}</h4><br /></div>
-        //         <div> <strong>User Score: </strong> {this.state.score} < br />
-        //         </div>
-        //         <div className="resetForm">
-        //             <button onClick={this.resetForm}>Next Question</button>
-        //         </div>
-        //         </div>
-        //     )
-        // }
 
         return (
-            // <div>
-            //     <div> <strong>User Score: </strong> {this.state.score} < br />
-            //         <strong>Category: </strong> {category}<br />
-            //         <strong>Question: </strong> {this.state.data.question} < br />
-            //         <strong>Value: </strong> {this.state.data.value}< br />
-            //     </div>
-
-            //     <div className="jeopardyAnswer">
-            //         <form onSubmit={this.handleSubmit}>
-            //             <div>
-            //                 <label htmlFor="answer">Your Answer: </label>
-            //                 <input
-            //                     type="text"
-            //                     name="jeopardyAnswer"
-            //                     value={this.state.formData.answer}
-            //                     onChange={this.handleChange}
-            //                 />
-            //             </div>
-            //             <button>Submit Answer</button>
-            //         </form>
-            //         <div>
-            //             {this.state.formData.answer}
-            //         </div>
-            //     </div>
-            // </div>
+          
             < JeopardyDisplay
                 category0={this.state.data.category.title}
                 category1={this.state.data1.category.title}
